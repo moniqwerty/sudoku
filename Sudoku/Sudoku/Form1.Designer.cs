@@ -34,7 +34,6 @@
             this.settingsBtn = new System.Windows.Forms.Button();
             this.aboutBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -56,6 +55,7 @@
             this.nGameBtn.TabIndex = 1;
             this.nGameBtn.Text = "New Game";
             this.nGameBtn.UseVisualStyleBackColor = true;
+            this.nGameBtn.Click += new System.EventHandler(this.nGameBtn_Click);
             // 
             // settingsBtn
             // 
@@ -65,6 +65,7 @@
             this.settingsBtn.TabIndex = 2;
             this.settingsBtn.Text = "Settings";
             this.settingsBtn.UseVisualStyleBackColor = true;
+            this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
             // 
             // aboutBtn
             // 
@@ -75,6 +76,7 @@
             this.aboutBtn.TabIndex = 3;
             this.aboutBtn.Text = "About";
             this.aboutBtn.UseVisualStyleBackColor = true;
+            this.aboutBtn.Click += new System.EventHandler(this.aboutBtn_Click);
             // 
             // exitBtn
             // 
@@ -87,15 +89,6 @@
             this.exitBtn.UseVisualStyleBackColor = true;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(354, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
-            // 
             // Form1
             // 
             this.AcceptButton = this.nGameBtn;
@@ -103,8 +96,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.CancelButton = this.exitBtn;
-            this.ClientSize = new System.Drawing.Size(734, 295);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(342, 295);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.aboutBtn);
             this.Controls.Add(this.settingsBtn);
@@ -126,7 +118,6 @@
         private System.Windows.Forms.Button settingsBtn;
         private System.Windows.Forms.Button aboutBtn;
         private System.Windows.Forms.Button exitBtn;
-        private System.Windows.Forms.Label label2;
 
 
 

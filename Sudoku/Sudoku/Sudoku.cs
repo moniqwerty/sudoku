@@ -202,7 +202,7 @@ namespace Sudoku
                 return false;
 
             }
-
+            /*moze drugachje
             public bool CheckIfAnswerPosition(int rowPos, int colPos, int dataValue)
             {
 
@@ -212,11 +212,11 @@ namespace Sudoku
                 else
                     return false;
 
-            }
+            }*/
 
-            //Method:CheckForAnswerChange
+            //Method:CheckForAnswerChange del od otstranuvanje na problemSetCopy
  
-            public bool CheckForAnswerChange(int rowPos, int colPos, int currentValue)
+            /*public bool CheckForAnswerChange(int rowPos, int colPos, int currentValue)
             {
                 if (_problemSetCopy[rowPos, colPos] != 0)
                 {
@@ -227,7 +227,7 @@ namespace Sudoku
                 }
                 return false;
 
-            }
+            }*/
      
             //Method:InitialiseSet
             //Purpose:Creates Answer Set
@@ -243,32 +243,37 @@ namespace Sudoku
 
                         _numberSet[i, j] = _originalSet[i, j];
                         _problemSet[i, j] = 0;
-                        _problemSetCopy[i, j] = 0;
+                       // _problemSetCopy[i, j] = 0; nezz?
                     }
                 }
-                Random number = new Random(seed);
-                int roworcolPos = number.Next(1, 3);
-                seed = DateTime.Now.Millisecond % 3;
-                number = new Random(seed);
-                int setNumber = number.Next(1, 3);
-                if (_swapRows)
-                {
-                    // swapRows
-                    SwapData(setNumber, roworcolPos, GameCombinations.SWAP_ROWS);
-                    _swapRows = false;
-                }
-                else
-                {
-                    // swapCols
-                    SwapData(setNumber, roworcolPos, GameCombinations.SWAP_COLS);
-                    _swapRows = true;
-                }
+               /* Random na = new Random(seed);
+                int gr = na.Next(1, 10);
+                for (int br = 0; br <= 3; br++)
+                {*/
+                    Random number = new Random(seed);
+                    int roworcolPos = number.Next(1, 3);
+                    seed = DateTime.Now.Millisecond % 3;
+                    number = new Random(seed);
+                    int setNumber = number.Next(1, 3);
+                    if (_swapRows)
+                    {
+                        // swapRows
+                        SwapData(setNumber, roworcolPos, GameCombinations.SWAP_ROWS);
+                        _swapRows = false;
+                    }
+                    else
+                    {
+                        // swapCols
+                        SwapData(setNumber, roworcolPos, GameCombinations.SWAP_COLS);
+                        _swapRows = true;
+                    }
 
-                seed = DateTime.Now.Millisecond % 3;
-                number = new Random(seed);
-                setNumber = number.Next(1, 3);
-                // swapSet
-                SwapData(setNumber, roworcolPos, GameCombinations.SWAP_SETS);
+                    seed = DateTime.Now.Millisecond % 3;
+                    number = new Random(seed);
+                    setNumber = number.Next(1, 3);
+                    // swapSet
+                    SwapData(setNumber, roworcolPos, GameCombinations.SWAP_SETS);
+                //}
             }
 
             //Method:SwapData
@@ -373,8 +378,6 @@ namespace Sudoku
 
 
             //Method:SwapNumberSet
-            
-
             private bool SwapNumberSet(int x1, int y1, int x2, int y2, int roworcol)
             {
                 int n1, n2, n3, n4, cnt = 0;
@@ -499,8 +502,6 @@ namespace Sudoku
 
             //Method: SwapNumber
 
-
-
             private bool SwapNumber(int pos, int number, int set1, int setNumber)
             {
                 int[] xpos = { 0, 0, 0, 1, 1, 1, 2, 2, 2 };
@@ -578,8 +579,8 @@ namespace Sudoku
 									 {2,4,9,7,3,5,6,8,1}
 									};
             public int[,] _numberSet { get; set; }
-            private int[,] _problemSet;
-            private int[,] _problemSetCopy;
+            public int[,] _problemSet { get; set; }
+            //private int[,] _problemSetCopy; uste neznam dali treba
             private int[] _setRowPosition = { 0, 0, 0, 3, 3, 3, 6, 6, 6 };
             private int[] _setColPosition = { 0, 3, 6, 0, 3, 6, 0, 3, 6 };
 
