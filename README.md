@@ -1,4 +1,4 @@
 sudoku
 ======
 
-A project for Visual programming class
+A project for Visual programming course
