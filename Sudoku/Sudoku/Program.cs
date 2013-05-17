@@ -17,6 +17,7 @@ namespace Sudoku
             Application.SetCompatibleTextRenderingDefault(false);
             Form main = new Form1();
             Application.Run(main);
+            
         }
     }
 }

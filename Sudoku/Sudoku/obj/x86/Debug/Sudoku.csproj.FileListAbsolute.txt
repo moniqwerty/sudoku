@@ -8,3 +8,4 @@ c:\users\moni\documents\visual studio 2010\Projects\Sudoku\Sudoku\obj\x86\Debug\
 c:\users\moni\documents\visual studio 2010\Projects\Sudoku\Sudoku\obj\x86\Debug\Sudoku.About.resources
 c:\users\moni\documents\visual studio 2010\Projects\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Settings.resources
 c:\users\moni\documents\visual studio 2010\Projects\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Game.resources
+C:\Users\Moni\Documents\Visual Studio 2010\Projects\Sudoku\Sudoku\obj\x86\Debug\Sudoku.csprojResolveAssemblyReference.cache

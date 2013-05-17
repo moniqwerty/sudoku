@@ -255,7 +255,8 @@ namespace Sudoku
                     seed = DateTime.Now.Millisecond % 3;
                     number = new Random(seed);
                     int setNumber = number.Next(1, 3);
-                    if (_swapRows)
+                
+                    if (seed==2)//(_swapRows)
                     {
                         // swapRows
                         SwapData(setNumber, roworcolPos, GameCombinations.SWAP_ROWS);
@@ -567,17 +568,42 @@ namespace Sudoku
 
             #region Fields
             bool _swapRows = true;
+
             //Suck it bitches, it took me 23 minutes to generate this via brute force, so I'll use the hell outta it
-            private int[,] _originalSet = {{7,9,2,3,5,1,8,4,6},
-									 {4,6,8,9,2,7,5,1,3},
-									 {1,3,5,6,8,4,7,9,2},
-									 {6,2,1,5,7,9,4,3,8},
-									 {5,8,3,2,4,6,1,7,9},
-									 {9,7,4,8,1,3,2,6,5},
-									 {8,1,6,4,9,2,3,5,7},
-									 {3,5,7,1,6,8,9,2,4},
-									 {2,4,9,7,3,5,6,8,1}
+            /* private int[,] _originalSet = {{7,9,2,3,5,1,8,4,6},
+                                      {4,6,8,9,2,7,5,1,3},
+                                      {1,3,5,6,8,4,7,9,2},
+                                      {6,2,1,5,7,9,4,3,8},
+                                      {5,8,3,2,4,6,1,7,9},
+                                      {9,7,4,8,1,3,2,6,5},
+                                      {8,1,6,4,9,2,3,5,7},
+                                      {3,5,7,1,6,8,9,2,4},
+                                      {2,4,9,7,3,5,6,8,1}
+                                     };
+            
+                 private int[,] _originalSet = {{9,6,4,2,8,7,1,5,3},
+             *                          {2,7,3,5,6,1,8,6,4},
+             *                          {1,5,8,6,4,3,2,9,7},
+             *                          {4,2,5,8,1,9,3,7,6},
+             *                          {6,8,7,3,5,4,9,2,1},
+             *                          {3,9,1,7,2,6,5,4,8},
+             *                          {8,3,9,4,6,2,7,1,5},
+             *                          {7,4,2,1,3,5,6,8,9},
+             *                          {5,1,6,9,7,8,4,3,2}};
+             */
+
+            /*rezervno mnozestvo za dopolnitelen random*/
+              private int[,] _originalSet = {{4,1,9,8,6,3,2,5,7},
+									 {7,8,5,2,4,9,3,1,6},
+									 {6,2,3,5,1,7,4,8,9},
+									 {8,5,4,3,2,6,7,9,1},
+									 {3,7,2,9,5,1,8,6,4},
+									 {1,9,6,7,8,4,5,3,2},
+									 {9,6,7,4,3,5,1,2,8},
+									 {5,4,8,1,9,2,6,7,3},
+									 {2,3,1,6,7,8,9,4,5}
 									};
+             
             public int[,] _numberSet { get; set; }
             public int[,] _problemSet { get; set; }
             //private int[,] _problemSetCopy; uste neznam dali treba
