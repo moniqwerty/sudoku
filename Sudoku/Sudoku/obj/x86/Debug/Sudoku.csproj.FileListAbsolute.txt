@@ -9,3 +9,15 @@ c:\users\moni\documents\visual studio 2010\Projects\Sudoku\Sudoku\obj\x86\Debug\
 c:\users\moni\documents\visual studio 2010\Projects\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Settings.resources
 c:\users\moni\documents\visual studio 2010\Projects\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Game.resources
 C:\Users\Moni\Documents\Visual Studio 2010\Projects\Sudoku\Sudoku\obj\x86\Debug\Sudoku.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.exe
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.pdb
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\bin\Debug\Sudoku.exe
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\bin\Debug\Sudoku.pdb
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.About.resources
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Form1.resources
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Game.resources
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Properties.Resources.resources
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Settings.resources
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\GenerateResource.write.1.tlog
