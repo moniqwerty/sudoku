@@ -12,7 +12,7 @@ namespace Sudoku
     public partial class Game : Form
     {
         public Sudoku game;
-        private Form1 form1;
+        private Settings form1;
 
         public static int WIDTH = 800;
         public static int HEIGHT = 700;
@@ -31,8 +31,11 @@ namespace Sudoku
         public List<int> errorList;
         public List<int> firstGenerated;
         public TextBox textBox1;
+        public int lastHint;
+        public int hintTime = -1;
+        public int numberOfHints = 3;
 
-        public Game(Form1 f)
+        public Game(Settings f)
         {
 
             this.form1 = f;
@@ -156,6 +159,11 @@ namespace Sudoku
                                     }
                                     labels[i - 1].ForeColor = System.Drawing.Color.Black;
                                 }
+                                if (GameFinished())
+                                {
+                                    DialogResult result = MessageBox.Show("\tYOU HAVE WON THE GAME!!!", "  Congratulations!!!!",MessageBoxButtons.OK);                                    
+                                    this.Close();
+                                }
                                 labels[i - 1].Visible = true;
                                 textBox1.Visible = false;
                                 foreach (int q in errorList)
@@ -181,7 +189,16 @@ namespace Sudoku
                 }
             }
         }
-
+        private bool GameFinished()
+        {
+            bool finished = true;
+            for (int i = 0; i < 81; i++)
+            {
+                if (labels[i].Text.Length == 0 || labels[i].ForeColor == Color.Red)
+                    finished = false;
+            }
+            return finished;
+        }
         private void DrawGrid(Graphics paint)
         {
             paint.DrawLine(pen, startPositionX, startPositionY, startPositionX + gridWidth, startPositionY);
@@ -321,6 +338,20 @@ namespace Sudoku
         {
             
             time++;
+            if (hintTime != -1)
+                hintTime--;
+            if (hintTime == 0)
+            {
+                labels[lastHint].ForeColor = Color.Black;
+                if (numberOfHints == 0)
+                {
+                    button1.Enabled = false;
+                    button1.Text = "NO HINTS";
+                }
+                else 
+                    button1.Text = string.Format("HINT   {0}", numberOfHints);
+                hintTime = -1;
+            }
             lblTime.Text = string.Format("{0:00}:{1:00}", time / 60, time % 60);
         }
 
@@ -335,27 +366,44 @@ namespace Sudoku
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Random r = new Random();
-            Boolean b = true;
-            int vreme = time + 4;
-            while (time < vreme)
+            if (hintTime == -1)
             {
-                int q = r.Next(0, 81);
-                if (labels[q].Text == "")
+                numberOfHints--;     
+                button1.Text = "WAIT . . .";
+                Random random = new Random();
+                Boolean nenajdov = true;
+                int vreme = time + 4;
+                while (time < vreme)
                 {
-                    if (isValid(q / 9, q % 9, game._numberSet[q / 9, q % 9] + ""))
+                    int q = random.Next(0, 81);
+                    if (labels[q].Text == "")
                     {
-                         labels[q].Text = game._numberSet[q / 9, q % 9] + "";
-                         b = false;
-                         break;
+                        if (isValid(q / 9, q % 9, game._numberSet[q / 9, q % 9] + ""))
+                        {
+                            labels[q].Text = game._numberSet[q / 9, q % 9] + "";
+                            labels[q].ForeColor = Color.Yellow;
+                            lastHint = q;
+                            hintTime = 4;
+                            nenajdov = false;
+                            break;
+                        }
                     }
                 }
+                if (nenajdov)
+                {
+                    MessageBox.Show("No hints for you!");
+                }
             }
-            if (b)
-            {
-                MessageBox.Show("No hints for you!");
-            }
-            button1.Enabled = false;
+        }
+
+        private void Game_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            form1.Show();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

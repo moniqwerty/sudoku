@@ -34,6 +34,7 @@
             this.rbtMedium = new System.Windows.Forms.RadioButton();
             this.rbtEasy = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,6 @@
             this.rbtHard.Name = "rbtHard";
             this.rbtHard.Size = new System.Drawing.Size(61, 23);
             this.rbtHard.TabIndex = 2;
-            this.rbtHard.TabStop = true;
             this.rbtHard.Text = "Hard";
             this.rbtHard.UseVisualStyleBackColor = true;
             this.rbtHard.CheckedChanged += new System.EventHandler(this.rbtHard_CheckedChanged);
@@ -67,6 +67,7 @@
             // rbtMedium
             // 
             this.rbtMedium.AutoSize = true;
+            this.rbtMedium.Checked = true;
             this.rbtMedium.Location = new System.Drawing.Point(31, 65);
             this.rbtMedium.Name = "rbtMedium";
             this.rbtMedium.Size = new System.Drawing.Size(77, 23);
@@ -83,20 +84,33 @@
             this.rbtEasy.Name = "rbtEasy";
             this.rbtEasy.Size = new System.Drawing.Size(62, 23);
             this.rbtEasy.TabIndex = 0;
-            this.rbtEasy.TabStop = true;
             this.rbtEasy.Text = "Easy";
             this.rbtEasy.UseVisualStyleBackColor = true;
             this.rbtEasy.CheckedChanged += new System.EventHandler(this.rbtEasy_CheckedChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(121, 241);
+            this.button1.BackColor = System.Drawing.Color.Tan;
+            this.button1.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(180, 241);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Back";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Text = "Start";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.Tan;
+            this.btnBack.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Location = new System.Drawing.Point(60, 241);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 2;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // Settings
             // 
@@ -105,10 +119,13 @@
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.BackgroundImage = global::Sudoku.Properties.Resources.back1;
             this.ClientSize = new System.Drawing.Size(318, 303);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(100, 100);
             this.Name = "Settings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Settings";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Settings_FormClosed);
             this.Load += new System.EventHandler(this.Settings_Load);
@@ -125,6 +142,7 @@
         private System.Windows.Forms.RadioButton rbtMedium;
         private System.Windows.Forms.RadioButton rbtEasy;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBack;
 
     }
 }
