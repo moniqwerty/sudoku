@@ -43,3 +43,5 @@ C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.Game.resources
 C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.Properties.Resources.resources
 C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.Settings.resources
 C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.csproj.GenerateResource.Cache
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.exe
+C:\Users\User\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.pdb
