@@ -28,6 +28,7 @@ namespace Sudoku
         public Pen pen;
 
         public List<Label> labels;
+        public List<int> errorList;
         public List<int> firstGenerated;
         public TextBox textBox1;
 
@@ -57,6 +58,7 @@ namespace Sudoku
 
             firstGenerated = new List<int>();
             labels = new List<Label>();
+            errorList = new List<int>();
             int k = 1;
 
             for (int i = 0; i < 9; i++)
@@ -143,15 +145,41 @@ namespace Sudoku
                                 labels[i - 1].Text = textBox1.Text.Substring(0, 1);
                                 if (!isValid((i - 1) / 9, (i - 1) % 9, labels[i - 1].Text))
                                 {
+                                    errorList.Add(i);
                                     labels[i - 1].ForeColor = System.Drawing.Color.Red;
+                                }
+                                else
+                                {
+                                    if (errorList.Contains(i))
+                                    {
+                                        errorList.Remove(i);
+                                    }
+                                    labels[i - 1].ForeColor = System.Drawing.Color.Black;
                                 }
                                 labels[i - 1].Visible = true;
                                 textBox1.Visible = false;
+                                foreach (int q in errorList)
+                                {
+                                    if (isValid((q - 1) / 9, (q - 1) % 9, labels[q - 1].Text))
+                                    {
+                                        errorList.Remove(1);
+                                        labels[q - 1].ForeColor = System.Drawing.Color.Black;
+                                    }
+                                }
                             }
                         }
                     }
                 }
-            }           
+            }
+            else
+            {
+                labels[i - 1].Text = "";
+                if (errorList.Contains(i))
+                {
+                    errorList.Remove(i);
+                    labels[i - 1].ForeColor = System.Drawing.Color.Black;
+                }
+            }
         }
 
         private void DrawGrid(Graphics paint)
