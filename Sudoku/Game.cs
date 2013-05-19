@@ -337,8 +337,8 @@ namespace Sudoku
         {
             Random r = new Random();
             Boolean b = true;
-            int vreme = time + 2;
-            while (time > vreme)
+            int vreme = time + 4;
+            while (time < vreme)
             {
                 int q = r.Next(0, 81);
                 if (labels[q].Text == "")
