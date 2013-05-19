@@ -51,44 +51,52 @@
             // 
             // nGameBtn
             // 
+            this.nGameBtn.BackColor = System.Drawing.Color.Tan;
+            this.nGameBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nGameBtn.Location = new System.Drawing.Point(126, 282);
             this.nGameBtn.Name = "nGameBtn";
             this.nGameBtn.Size = new System.Drawing.Size(111, 28);
             this.nGameBtn.TabIndex = 1;
             this.nGameBtn.Text = "New Game";
-            this.nGameBtn.UseVisualStyleBackColor = true;
+            this.nGameBtn.UseVisualStyleBackColor = false;
             this.nGameBtn.Click += new System.EventHandler(this.nGameBtn_Click);
             // 
             // settingsBtn
             // 
+            this.settingsBtn.BackColor = System.Drawing.Color.Tan;
+            this.settingsBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settingsBtn.Location = new System.Drawing.Point(126, 328);
             this.settingsBtn.Name = "settingsBtn";
             this.settingsBtn.Size = new System.Drawing.Size(111, 28);
             this.settingsBtn.TabIndex = 2;
             this.settingsBtn.Text = "Settings";
-            this.settingsBtn.UseVisualStyleBackColor = true;
+            this.settingsBtn.UseVisualStyleBackColor = false;
             this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
             // 
             // aboutBtn
             // 
+            this.aboutBtn.BackColor = System.Drawing.Color.Tan;
             this.aboutBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.aboutBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aboutBtn.Location = new System.Drawing.Point(126, 377);
             this.aboutBtn.Name = "aboutBtn";
             this.aboutBtn.Size = new System.Drawing.Size(111, 28);
             this.aboutBtn.TabIndex = 3;
             this.aboutBtn.Text = "About";
-            this.aboutBtn.UseVisualStyleBackColor = true;
+            this.aboutBtn.UseVisualStyleBackColor = false;
             this.aboutBtn.Click += new System.EventHandler(this.aboutBtn_Click);
             // 
             // exitBtn
             // 
+            this.exitBtn.BackColor = System.Drawing.Color.Tan;
             this.exitBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.exitBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitBtn.Location = new System.Drawing.Point(126, 427);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(111, 28);
             this.exitBtn.TabIndex = 4;
             this.exitBtn.Text = "Exit";
-            this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.UseVisualStyleBackColor = false;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // Form1
