@@ -332,5 +332,30 @@ namespace Sudoku
                 textBox1.Visible = false;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Random r = new Random();
+            Boolean b = true;
+            int vreme = time + 2;
+            while (time > vreme)
+            {
+                int q = r.Next(0, 81);
+                if (labels[q].Text == "")
+                {
+                    if (isValid(q / 9, q % 9, game._numberSet[q / 9, q % 9] + ""))
+                    {
+                         labels[q].Text = game._numberSet[q / 9, q % 9] + "";
+                         b = false;
+                         break;
+                    }
+                }
+            }
+            if (b)
+            {
+                MessageBox.Show("No hints for you!");
+            }
+            button1.Enabled = false;
+        }
     }
 }
