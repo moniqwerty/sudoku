@@ -28,6 +28,7 @@ namespace Sudoku
         public Pen pen;
 
         public List<Label> labels;
+        public List<int> errorList;
         public List<int> firstGenerated;
         public TextBox textBox1;
 
@@ -42,10 +43,13 @@ namespace Sudoku
             timer1.Start();
             game = new Sudoku();
             this.Width = WIDTH;
-            this.Height = HEIGHT;           
-            
+            this.Height = HEIGHT;
+
 
             textBox1 = new TextBox();
+
+            this.textBox1.TabIndex = 1;
+
             textBox1.TextChanged += new EventHandler(textBox1_TextChanged);
             textBox1.Font = new Font("Papyrus", 16F, (FontStyle.Bold), GraphicsUnit.Point, ((byte)(0)));
             textBox1.TextAlign = HorizontalAlignment.Center;
@@ -54,6 +58,7 @@ namespace Sudoku
 
             firstGenerated = new List<int>();
             labels = new List<Label>();
+            errorList = new List<int>();
             int k = 1;
 
             for (int i = 0; i < 9; i++)
@@ -103,15 +108,12 @@ namespace Sudoku
 
             int[,] set = game._numberSet;
             int[,] mset = game._problemSet;
-            //String str1 = "";
-            //String str2 = "";
             k = 0;
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
                 {
-                   // str1 += set[i, j];
-                    //str2 += mset[i, j];
+
                     if (mset[i, j] != 0)
                     {
                         labels[k].Text = Convert.ToString(mset[i, j]);
@@ -119,29 +121,65 @@ namespace Sudoku
                     }
                     k++;
                 }
-               // str1 += "\n";
-               // str2 += "\n";
+
             }
-            //label3.Text = str1;
-            //label4.Text = str2;
         }
                               
         void textBox1_TextChanged(object sender, EventArgs e)
         {
             int i = Convert.ToInt32(textBox1.Name.Substring(textBox1.Name.Length - 2));
             if (textBox1.TextLength != 0)
-            {                
-                if (Convert.ToInt32(textBox1.Text) < 10 && Convert.ToInt32(textBox1.Text) > 0)
+            {
+                int n;
+                bool isNumeric = int.TryParse(textBox1.Text, out n);
+                if (isNumeric)
                 {
-                    if (labels[i - 1].Text != textBox1.Text)
+                    if (Convert.ToInt32(textBox1.Text) < 10 && Convert.ToInt32(textBox1.Text) > 0)
                     {
-                        labels[i - 1].Text = textBox1.Text;                        
-                        labels[i - 1].Visible = true;
-                        textBox1.Visible = false;
+                        if (labels[i - 1].Text != textBox1.Text)
+                        {
+
+                            bool isNum = int.TryParse(textBox1.Text, out n);
+                            if (isNum)
+                            {
+                                labels[i - 1].Text = textBox1.Text.Substring(0, 1);
+                                if (!isValid((i - 1) / 9, (i - 1) % 9, labels[i - 1].Text))
+                                {
+                                    errorList.Add(i);
+                                    labels[i - 1].ForeColor = System.Drawing.Color.Red;
+                                }
+                                else
+                                {
+                                    if (errorList.Contains(i))
+                                    {
+                                        errorList.Remove(i);
+                                    }
+                                    labels[i - 1].ForeColor = System.Drawing.Color.Black;
+                                }
+                                labels[i - 1].Visible = true;
+                                textBox1.Visible = false;
+                                foreach (int q in errorList)
+                                {
+                                    if (isValid((q - 1) / 9, (q - 1) % 9, labels[q - 1].Text))
+                                    {
+                                        errorList.Remove(1);
+                                        labels[q - 1].ForeColor = System.Drawing.Color.Black;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-            
+            else
+            {
+                labels[i - 1].Text = "";
+                if (errorList.Contains(i))
+                {
+                    errorList.Remove(i);
+                    labels[i - 1].ForeColor = System.Drawing.Color.Black;
+                }
+            }
         }
 
         private void DrawGrid(Graphics paint)
@@ -179,18 +217,25 @@ namespace Sudoku
         {
 
         }
-        bool isValid(int[][] matrix, int i, int j, int el) //
+        bool isValid(int i, int j, string el) //
         {
+
             for (int k = 0; k < 9; k++)
             {
-                if (matrix[i][k] == el)
+                if (k == j) continue;
+                if(labels[i*9+k].Text==el)
+
                 {
+                    
                     return false;
                 }
             }
+
             for (int k = 0; k < 9; k++)
             {
-                if (matrix[k][j] == el)
+                if (k == i) continue;
+                if (labels[k * 9 + j].Text==el)
+
                 {
                     return false;
                 }
@@ -226,11 +271,15 @@ namespace Sudoku
                 xi = 6;
                 yi = 8;
             }
+            
             for (int k = xi; k < yi; k++)
             {
                 for (int m = xj; m < yj; m++)
                 {
-                    if (matrix[k][m] == el)
+                    if (k == i) continue;
+                    if (m == i) continue;
+                    if (labels[k * 9 + m].Text==el)
+
                     {
                         return false;
                     }
@@ -282,6 +331,31 @@ namespace Sudoku
 
                 textBox1.Visible = false;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Random r = new Random();
+            Boolean b = true;
+            int vreme = time + 2;
+            while (time > vreme)
+            {
+                int q = r.Next(0, 81);
+                if (labels[q].Text == "")
+                {
+                    if (isValid(q / 9, q % 9, game._numberSet[q / 9, q % 9] + ""))
+                    {
+                         labels[q].Text = game._numberSet[q / 9, q % 9] + "";
+                         b = false;
+                         break;
+                    }
+                }
+            }
+            if (b)
+            {
+                MessageBox.Show("No hints for you!");
+            }
+            button1.Enabled = false;
         }
     }
 }

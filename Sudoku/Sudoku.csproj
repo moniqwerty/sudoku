@@ -110,7 +110,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\back.jpg" />
+    <Content Include="Resources\madjarov.png" />
+    <Content Include="Resources\misev.png" />
+    <Content Include="Resources\tenev.png" />
+    <Content Include="Resources\tomce.png" />
+    <Content Include="Resources\trajanov.png" />
+    <Content Include="Resources\trajkovik.png" />
     <None Include="Resources\back1.jpg" />
+    <Content Include="Resources\baki.png" />
+    <Content Include="Resources\dejan.png" />
+    <Content Include="Resources\gajduk.png" />
     <Content Include="Resources\Grunge background with dragon 04.jpg" />
     <Content Include="Resources\icon.ico" />
   </ItemGroup>
