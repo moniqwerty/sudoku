@@ -103,15 +103,15 @@ namespace Sudoku
 
             int[,] set = game._numberSet;
             int[,] mset = game._problemSet;
-            String str1 = "";
-            String str2 = "";
+            //String str1 = "";
+            //String str2 = "";
             k = 0;
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    str1 += set[i, j];
-                    str2 += mset[i, j];
+                   // str1 += set[i, j];
+                    //str2 += mset[i, j];
                     if (mset[i, j] != 0)
                     {
                         labels[k].Text = Convert.ToString(mset[i, j]);
@@ -119,11 +119,11 @@ namespace Sudoku
                     }
                     k++;
                 }
-                str1 += "\n";
-                str2 += "\n";
+               // str1 += "\n";
+               // str2 += "\n";
             }
-            label3.Text = str1;
-            label4.Text = str2;
+            //label3.Text = str1;
+            //label4.Text = str2;
         }
                               
         void textBox1_TextChanged(object sender, EventArgs e)

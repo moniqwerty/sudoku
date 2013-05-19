@@ -52,6 +52,7 @@
             // nGameBtn
             // 
             this.nGameBtn.BackColor = System.Drawing.Color.Tan;
+           // this.nGameBtn.
             this.nGameBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nGameBtn.Location = new System.Drawing.Point(126, 282);
             this.nGameBtn.Name = "nGameBtn";
