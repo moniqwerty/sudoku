@@ -34,6 +34,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
+            this.error = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -74,12 +75,21 @@
             this.lblTime.TabIndex = 7;
             this.lblTime.Text = "00:00";
             // 
+            // error
+            // 
+            this.error.AutoSize = true;
+            this.error.Location = new System.Drawing.Point(293, 22);
+            this.error.Name = "error";
+            this.error.Size = new System.Drawing.Size(0, 13);
+            this.error.TabIndex = 8;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Sudoku.Properties.Resources.Grunge_background_with_dragon_04;
             this.ClientSize = new System.Drawing.Size(996, 660);
+            this.Controls.Add(this.error);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -100,5 +110,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label error;
     }
 }

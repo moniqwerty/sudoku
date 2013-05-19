@@ -34,3 +34,13 @@ C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Setting
 C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.csproj.GenerateResource.Cache
 C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.exe
 C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.pdb
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\bin\Debug\Sudoku.exe
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\bin\Debug\Sudoku.pdb
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.csprojResolveAssemblyReference.cache
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.About.resources
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.Form1.resources
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.Game.resources
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.Properties.Resources.resources
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.Settings.resources
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.csproj.GenerateResource.Cache
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.proba.resources

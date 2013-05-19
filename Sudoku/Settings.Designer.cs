@@ -42,8 +42,9 @@
             this.groupBox1.Controls.Add(this.rbtHard);
             this.groupBox1.Controls.Add(this.rbtMedium);
             this.groupBox1.Controls.Add(this.rbtEasy);
-            this.groupBox1.ForeColor = System.Drawing.Color.Teal;
-            this.groupBox1.Location = new System.Drawing.Point(34, 32);
+            this.groupBox1.Font = new System.Drawing.Font("Papyrus", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.Maroon;
+            this.groupBox1.Location = new System.Drawing.Point(59, 65);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 145);
             this.groupBox1.TabIndex = 0;
@@ -56,7 +57,7 @@
             this.rbtHard.AutoSize = true;
             this.rbtHard.Location = new System.Drawing.Point(31, 98);
             this.rbtHard.Name = "rbtHard";
-            this.rbtHard.Size = new System.Drawing.Size(48, 17);
+            this.rbtHard.Size = new System.Drawing.Size(61, 23);
             this.rbtHard.TabIndex = 2;
             this.rbtHard.TabStop = true;
             this.rbtHard.Text = "Hard";
@@ -68,7 +69,7 @@
             this.rbtMedium.AutoSize = true;
             this.rbtMedium.Location = new System.Drawing.Point(31, 65);
             this.rbtMedium.Name = "rbtMedium";
-            this.rbtMedium.Size = new System.Drawing.Size(62, 17);
+            this.rbtMedium.Size = new System.Drawing.Size(77, 23);
             this.rbtMedium.TabIndex = 1;
             this.rbtMedium.TabStop = true;
             this.rbtMedium.Text = "Medium";
@@ -80,7 +81,7 @@
             this.rbtEasy.AutoSize = true;
             this.rbtEasy.Location = new System.Drawing.Point(31, 32);
             this.rbtEasy.Name = "rbtEasy";
-            this.rbtEasy.Size = new System.Drawing.Size(48, 17);
+            this.rbtEasy.Size = new System.Drawing.Size(62, 23);
             this.rbtEasy.TabIndex = 0;
             this.rbtEasy.TabStop = true;
             this.rbtEasy.Text = "Easy";
@@ -89,7 +90,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(80, 201);
+            this.button1.Location = new System.Drawing.Point(121, 241);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -102,8 +103,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.BackgroundImage = global::Sudoku.Properties.Resources.back;
-            this.ClientSize = new System.Drawing.Size(382, 303);
+            this.BackgroundImage = global::Sudoku.Properties.Resources.back1;
+            this.ClientSize = new System.Drawing.Size(318, 303);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
