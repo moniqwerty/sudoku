@@ -57,6 +57,7 @@ namespace Sudoku
             textBox1.Font = new Font("Papyrus", 16F, (FontStyle.Bold), GraphicsUnit.Point, ((byte)(0)));
             textBox1.TextAlign = HorizontalAlignment.Center;
             textBox1.Visible = false;
+            textBox1.BorderStyle = BorderStyle.None;
             this.Controls.Add(textBox1);
 
             firstGenerated = new List<int>();
