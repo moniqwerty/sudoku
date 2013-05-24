@@ -21,3 +21,5 @@ C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Propert
 C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.Settings.resources
 C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\User\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.exe
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\Sudoku\obj\x86\Debug\Sudoku.pdb

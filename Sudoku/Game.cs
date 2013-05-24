@@ -147,7 +147,7 @@ namespace Sudoku
                             if (isNum)
                             {
                                 labels[i - 1].Text = textBox1.Text.Substring(0, 1);
-                                if (!isValid((i - 1) / 9, (i - 1) % 9, labels[i - 1].Text))
+                                if (!isValid(i, labels[i - 1].Text))
                                 {
                                     errorList.Add(i);
                                     labels[i - 1].ForeColor = System.Drawing.Color.Red;
@@ -169,7 +169,7 @@ namespace Sudoku
                                 textBox1.Visible = false;
                                 foreach (int q in errorList)
                                 {
-                                    if (isValid((q - 1) / 9, (q - 1) % 9, labels[q - 1].Text))
+                                    if (isValid(q, labels[q - 1].Text))
                                     {
                                         errorList.Remove(1);
                                         labels[q - 1].ForeColor = System.Drawing.Color.Black;
@@ -235,9 +235,12 @@ namespace Sudoku
         {
 
         }
-        bool isValid(int i, int j, string el) //
+        bool isValid(int wat, string el) //
         {
-
+            int i = ((wat - 1) / 9);
+            int j = ((wat - 1) % 9);
+            //error.Text += /*"wat: " + wat + */"i: " + i + " j: " + j + "\n";
+            //dali e validno vo redica
             for (int k = 0; k < 9; k++)
             {
                 if (k == j) continue;
@@ -248,7 +251,7 @@ namespace Sudoku
                     return false;
                 }
             }
-
+            //dali e validno vo kolona
             for (int k = 0; k < 9; k++)
             {
                 if (k == i) continue;
@@ -264,6 +267,21 @@ namespace Sudoku
                 xi = 0;
                 yi = 2;
             }
+            else if ((i >= 3) && (i <= 5))
+            {
+                xi = 3;
+                yi = 5;
+            }
+            else if ((i >= 6) && (i <= 8))
+            {
+                xi = 6;
+                yi = 8;
+            }
+            if ((j >= 0) && (j <= 2))
+            {
+                xj = 0;
+                yj = 2;
+            }
             else if ((j >= 3) && (j <= 5))
             {
                 xj = 3;
@@ -274,34 +292,21 @@ namespace Sudoku
                 xj = 6;
                 yj = 8;
             }
-            else if ((i >= 3) && (i <= 5))
-            {
-                xi = 3;
-                yi = 5;
-            }
-            if ((j >= 0) && (j <= 2))
-            {
-                xj = 0;
-                yj = 2;
-            }
-            else if ((i >= 6) && (i <= 8))
-            {
-                xi = 6;
-                yi = 8;
-            }
             
-            for (int k = xi; k < yi; k++)
+            for (int k = xi; k <= yi; k++)
             {
-                for (int m = xj; m < yj; m++)
+                for (int m = xj; m <= yj; m++)
                 {
+                    //error.Text += labels[k * 9 + m].Text + " ";
                     if (k == i) continue;
-                    if (m == i) continue;
+                    if (m == j) continue;
                     if (labels[k * 9 + m].Text==el)
 
                     {
                         return false;
                     }
                 }
+                //error.Text +="\n";
             }
             return true;
         }
@@ -379,7 +384,8 @@ namespace Sudoku
                     int q = random.Next(0, 81);
                     if (labels[q].Text == "")
                     {
-                        if (isValid(q / 9, q % 9, game._numberSet[q / 9, q % 9] + ""))
+                        if (isValid(q+1, game._numberSet[q / 9, q % 9] + ""))
+                       // if (isValid(q / 9, q % 9, game._numberSet[q / 9, q % 9] + ""))
                         {
                             labels[q].Text = game._numberSet[q / 9, q % 9] + "";
                             labels[q].ForeColor = Color.Yellow;
