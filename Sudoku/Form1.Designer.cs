@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.nGameBtn = new System.Windows.Forms.Button();
-            this.settingsBtn = new System.Windows.Forms.Button();
             this.aboutBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -52,7 +51,6 @@
             // nGameBtn
             // 
             this.nGameBtn.BackColor = System.Drawing.Color.Tan;
-           // this.nGameBtn.
             this.nGameBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nGameBtn.Location = new System.Drawing.Point(126, 282);
             this.nGameBtn.Name = "nGameBtn";
@@ -62,24 +60,12 @@
             this.nGameBtn.UseVisualStyleBackColor = false;
             this.nGameBtn.Click += new System.EventHandler(this.nGameBtn_Click);
             // 
-            // settingsBtn
-            // 
-            this.settingsBtn.BackColor = System.Drawing.Color.Tan;
-            this.settingsBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsBtn.Location = new System.Drawing.Point(126, 328);
-            this.settingsBtn.Name = "settingsBtn";
-            this.settingsBtn.Size = new System.Drawing.Size(111, 28);
-            this.settingsBtn.TabIndex = 2;
-            this.settingsBtn.Text = "Settings";
-            this.settingsBtn.UseVisualStyleBackColor = false;
-            this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
-            // 
             // aboutBtn
             // 
             this.aboutBtn.BackColor = System.Drawing.Color.Tan;
             this.aboutBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.aboutBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aboutBtn.Location = new System.Drawing.Point(126, 377);
+            this.aboutBtn.Location = new System.Drawing.Point(126, 328);
             this.aboutBtn.Name = "aboutBtn";
             this.aboutBtn.Size = new System.Drawing.Size(111, 28);
             this.aboutBtn.TabIndex = 3;
@@ -92,7 +78,7 @@
             this.exitBtn.BackColor = System.Drawing.Color.Tan;
             this.exitBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.exitBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitBtn.Location = new System.Drawing.Point(126, 427);
+            this.exitBtn.Location = new System.Drawing.Point(126, 377);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(111, 28);
             this.exitBtn.TabIndex = 4;
@@ -111,11 +97,12 @@
             this.ClientSize = new System.Drawing.Size(342, 653);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.aboutBtn);
-            this.Controls.Add(this.settingsBtn);
             this.Controls.Add(this.nGameBtn);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(100, 100);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "SplashScreen";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -127,7 +114,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button nGameBtn;
-        private System.Windows.Forms.Button settingsBtn;
         private System.Windows.Forms.Button aboutBtn;
         private System.Windows.Forms.Button exitBtn;
 

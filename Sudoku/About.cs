@@ -15,7 +15,7 @@ namespace Sudoku
         public About(Form p)
         {
             InitializeComponent();
-            parent = p;
+            parent = p;            
         }
 
         private void About_Leave(object sender, EventArgs e)
@@ -41,6 +41,11 @@ namespace Sudoku
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

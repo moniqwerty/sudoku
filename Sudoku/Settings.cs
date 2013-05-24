@@ -12,29 +12,33 @@ namespace Sudoku
     public partial class Settings : Form
     {
         public Form1 parent;
+        public int gameDiff { get; set; } //0==simple 1==medium 2==complex
+
         public Settings(Form1 p)
         {
             InitializeComponent();
-            parent = p;
-            if (parent.gameDiff == 0)
-            {
-                rbtEasy.Checked = true;
-                rbtMedium.Checked = false;
-                rbtHard.Checked = false;
+            gameDiff = 1;
 
-            }
-            if (parent.gameDiff == 1)
-            {
-                rbtEasy.Checked = false;
-                rbtMedium.Checked = true;
-                rbtHard.Checked = false;
-            }
-            if (parent.gameDiff == 2)
-            {
-                rbtEasy.Checked = false;
-                rbtMedium.Checked = false;
-                rbtHard.Checked = true;
-            }
+            parent = p;
+            //if (parent.gameDiff == 0)
+            //{
+            //    rbtEasy.Checked = true;
+            //    rbtMedium.Checked = false;
+            //    rbtHard.Checked = false;
+
+            //}
+            //if (parent.gameDiff == 1)
+            //{
+            //    rbtEasy.Checked = false;
+            //    rbtMedium.Checked = true;
+            //    rbtHard.Checked = false;
+            //}
+            //if (parent.gameDiff == 2)
+            //{
+            //    rbtEasy.Checked = false;
+            //    rbtMedium.Checked = false;
+            //    rbtHard.Checked = true;
+            //}           
             groupBox1.BackColor = System.Drawing.Color.Transparent;
                 
         }
@@ -47,7 +51,7 @@ namespace Sudoku
         private void rbtEasy_CheckedChanged(object sender, EventArgs e)
         {
             if (rbtEasy.Checked){
-                parent.gameDiff = 0;
+                gameDiff = 0;
             }
         }
 
@@ -55,7 +59,7 @@ namespace Sudoku
         {
             if (rbtMedium.Checked)
             {
-                parent.gameDiff = 1;
+                gameDiff = 1;
             }
         }
 
@@ -63,7 +67,7 @@ namespace Sudoku
         {
             if (rbtHard.Checked)
             {
-                parent.gameDiff = 2;
+                gameDiff = 2;
             }
         }
 
@@ -74,12 +78,19 @@ namespace Sudoku
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Game game = new Game(this);
+            game.Show();
+            this.Hide();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

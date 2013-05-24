@@ -12,7 +12,7 @@ namespace Sudoku
     public partial class Game : Form
     {
         public Sudoku game;
-        private Form1 form1;
+        private Settings form1;
 
         public static int WIDTH = 800;
         public static int HEIGHT = 700;
@@ -31,8 +31,11 @@ namespace Sudoku
         public List<int> errorList;
         public List<int> firstGenerated;
         public TextBox textBox1;
+        public int lastHint;
+        public int hintTime = -1;
+        public int numberOfHints = 3;
 
-        public Game(Form1 f)
+        public Game(Settings f)
         {
 
             this.form1 = f;
@@ -54,6 +57,7 @@ namespace Sudoku
             textBox1.Font = new Font("Papyrus", 16F, (FontStyle.Bold), GraphicsUnit.Point, ((byte)(0)));
             textBox1.TextAlign = HorizontalAlignment.Center;
             textBox1.Visible = false;
+            textBox1.BorderStyle = BorderStyle.None;
             this.Controls.Add(textBox1);
 
             firstGenerated = new List<int>();
@@ -143,7 +147,7 @@ namespace Sudoku
                             if (isNum)
                             {
                                 labels[i - 1].Text = textBox1.Text.Substring(0, 1);
-                                if (!isValid((i - 1) / 9, (i - 1) % 9, labels[i - 1].Text))
+                                if (!isValid(i, labels[i - 1].Text))
                                 {
                                     errorList.Add(i);
                                     labels[i - 1].ForeColor = System.Drawing.Color.Red;
@@ -156,11 +160,16 @@ namespace Sudoku
                                     }
                                     labels[i - 1].ForeColor = System.Drawing.Color.Black;
                                 }
+                                if (GameFinished())
+                                {
+                                    DialogResult result = MessageBox.Show("\tYOU HAVE WON THE GAME!!!", "  Congratulations!!!!",MessageBoxButtons.OK);                                    
+                                    this.Close();
+                                }
                                 labels[i - 1].Visible = true;
                                 textBox1.Visible = false;
                                 foreach (int q in errorList)
                                 {
-                                    if (isValid((q - 1) / 9, (q - 1) % 9, labels[q - 1].Text))
+                                    if (isValid(q, labels[q - 1].Text))
                                     {
                                         errorList.Remove(1);
                                         labels[q - 1].ForeColor = System.Drawing.Color.Black;
@@ -181,7 +190,16 @@ namespace Sudoku
                 }
             }
         }
-
+        private bool GameFinished()
+        {
+            bool finished = true;
+            for (int i = 0; i < 81; i++)
+            {
+                if (labels[i].Text.Length == 0 || labels[i].ForeColor == Color.Red)
+                    finished = false;
+            }
+            return finished;
+        }
         private void DrawGrid(Graphics paint)
         {
             paint.DrawLine(pen, startPositionX, startPositionY, startPositionX + gridWidth, startPositionY);
@@ -217,9 +235,12 @@ namespace Sudoku
         {
 
         }
-        bool isValid(int i, int j, string el) //
+        bool isValid(int wat, string el) //
         {
-
+            int i = ((wat - 1) / 9);
+            int j = ((wat - 1) % 9);
+            //error.Text += /*"wat: " + wat + */"i: " + i + " j: " + j + "\n";
+            //dali e validno vo redica
             for (int k = 0; k < 9; k++)
             {
                 if (k == j) continue;
@@ -230,7 +251,7 @@ namespace Sudoku
                     return false;
                 }
             }
-
+            //dali e validno vo kolona
             for (int k = 0; k < 9; k++)
             {
                 if (k == i) continue;
@@ -246,6 +267,21 @@ namespace Sudoku
                 xi = 0;
                 yi = 2;
             }
+            else if ((i >= 3) && (i <= 5))
+            {
+                xi = 3;
+                yi = 5;
+            }
+            else if ((i >= 6) && (i <= 8))
+            {
+                xi = 6;
+                yi = 8;
+            }
+            if ((j >= 0) && (j <= 2))
+            {
+                xj = 0;
+                yj = 2;
+            }
             else if ((j >= 3) && (j <= 5))
             {
                 xj = 3;
@@ -256,34 +292,21 @@ namespace Sudoku
                 xj = 6;
                 yj = 8;
             }
-            else if ((i >= 3) && (i <= 5))
-            {
-                xi = 3;
-                yi = 5;
-            }
-            if ((j >= 0) && (j <= 2))
-            {
-                xj = 0;
-                yj = 2;
-            }
-            else if ((i >= 6) && (i <= 8))
-            {
-                xi = 6;
-                yi = 8;
-            }
             
-            for (int k = xi; k < yi; k++)
+            for (int k = xi; k <= yi; k++)
             {
-                for (int m = xj; m < yj; m++)
+                for (int m = xj; m <= yj; m++)
                 {
+                    //error.Text += labels[k * 9 + m].Text + " ";
                     if (k == i) continue;
-                    if (m == i) continue;
+                    if (m == j) continue;
                     if (labels[k * 9 + m].Text==el)
 
                     {
                         return false;
                     }
                 }
+                //error.Text +="\n";
             }
             return true;
         }
@@ -321,6 +344,20 @@ namespace Sudoku
         {
             
             time++;
+            if (hintTime != -1)
+                hintTime--;
+            if (hintTime == 0)
+            {
+                labels[lastHint].ForeColor = Color.Black;
+                if (numberOfHints == 0)
+                {
+                    button1.Enabled = false;
+                    button1.Text = "NO HINTS";
+                }
+                else 
+                    button1.Text = string.Format("HINT   {0}", numberOfHints);
+                hintTime = -1;
+            }
             lblTime.Text = string.Format("{0:00}:{1:00}", time / 60, time % 60);
         }
 
@@ -335,27 +372,45 @@ namespace Sudoku
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Random r = new Random();
-            Boolean b = true;
-            int vreme = time + 4;
-            while (time < vreme)
+            if (hintTime == -1)
             {
-                int q = r.Next(0, 81);
-                if (labels[q].Text == "")
+                numberOfHints--;     
+                button1.Text = "WAIT . . .";
+                Random random = new Random();
+                Boolean nenajdov = true;
+                int vreme = time + 4;
+                while (time < vreme)
                 {
-                    if (isValid(q / 9, q % 9, game._numberSet[q / 9, q % 9] + ""))
+                    int q = random.Next(0, 81);
+                    if (labels[q].Text == "")
                     {
-                         labels[q].Text = game._numberSet[q / 9, q % 9] + "";
-                         b = false;
-                         break;
+                        if (isValid(q+1, game._numberSet[q / 9, q % 9] + ""))
+                       // if (isValid(q / 9, q % 9, game._numberSet[q / 9, q % 9] + ""))
+                        {
+                            labels[q].Text = game._numberSet[q / 9, q % 9] + "";
+                            labels[q].ForeColor = Color.Yellow;
+                            lastHint = q;
+                            hintTime = 4;
+                            nenajdov = false;
+                            break;
+                        }
                     }
                 }
+                if (nenajdov)
+                {
+                    MessageBox.Show("No hints for you!");
+                }
             }
-            if (b)
-            {
-                MessageBox.Show("No hints for you!");
-            }
-            button1.Enabled = false;
+        }
+
+        private void Game_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            form1.Show();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
