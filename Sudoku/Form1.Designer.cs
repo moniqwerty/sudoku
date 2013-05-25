@@ -33,6 +33,7 @@
             this.nGameBtn = new System.Windows.Forms.Button();
             this.aboutBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -65,7 +66,7 @@
             this.aboutBtn.BackColor = System.Drawing.Color.Tan;
             this.aboutBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.aboutBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aboutBtn.Location = new System.Drawing.Point(126, 328);
+            this.aboutBtn.Location = new System.Drawing.Point(126, 369);
             this.aboutBtn.Name = "aboutBtn";
             this.aboutBtn.Size = new System.Drawing.Size(111, 28);
             this.aboutBtn.TabIndex = 3;
@@ -78,13 +79,25 @@
             this.exitBtn.BackColor = System.Drawing.Color.Tan;
             this.exitBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.exitBtn.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitBtn.Location = new System.Drawing.Point(126, 377);
+            this.exitBtn.Location = new System.Drawing.Point(126, 418);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(111, 28);
             this.exitBtn.TabIndex = 4;
             this.exitBtn.Text = "Exit";
             this.exitBtn.UseVisualStyleBackColor = false;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Tan;
+            this.button3.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(126, 324);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(111, 29);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Load Game";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
@@ -95,6 +108,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.CancelButton = this.exitBtn;
             this.ClientSize = new System.Drawing.Size(342, 653);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.aboutBtn);
             this.Controls.Add(this.nGameBtn);
@@ -116,6 +130,7 @@
         private System.Windows.Forms.Button nGameBtn;
         private System.Windows.Forms.Button aboutBtn;
         private System.Windows.Forms.Button exitBtn;
+        private System.Windows.Forms.Button button3;
 
 
 

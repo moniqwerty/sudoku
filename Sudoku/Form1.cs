@@ -48,6 +48,12 @@ namespace Sudoku
 
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Game game = new Game(1);
+            game.Show();
+        }
+
        
     }
 }

@@ -34,7 +34,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
-            this.error = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -79,14 +78,6 @@
             this.lblTime.TabIndex = 7;
             this.lblTime.Text = "00:00";
             // 
-            // error
-            // 
-            this.error.AutoSize = true;
-            this.error.Location = new System.Drawing.Point(293, 22);
-            this.error.Name = "error";
-            this.error.Size = new System.Drawing.Size(0, 13);
-            this.error.TabIndex = 8;
-            // 
             // btnBack
             // 
             this.btnBack.BackColor = System.Drawing.Color.Tan;
@@ -107,7 +98,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 23);
             this.button3.TabIndex = 10;
-            this.button3.Text = "OPEN";
+            this.button3.Text = "LOAD";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -119,7 +110,6 @@
             this.ClientSize = new System.Drawing.Size(996, 660);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.error);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -143,7 +133,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblTime;
-        private System.Windows.Forms.Label error;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button button3;
     }
