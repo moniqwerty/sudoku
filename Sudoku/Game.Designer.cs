@@ -36,6 +36,7 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.error = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // timer1
@@ -65,6 +66,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "SAVE";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // lblTime
             // 
@@ -89,7 +91,7 @@
             // 
             this.btnBack.BackColor = System.Drawing.Color.Tan;
             this.btnBack.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(132, 413);
+            this.btnBack.Location = new System.Drawing.Point(132, 465);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 23);
             this.btnBack.TabIndex = 9;
@@ -97,12 +99,25 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Tan;
+            this.button3.Font = new System.Drawing.Font("Papyrus", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(132, 413);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 23);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "OPEN";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Sudoku.Properties.Resources.Grunge_background_with_dragon_04;
             this.ClientSize = new System.Drawing.Size(996, 660);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.error);
             this.Controls.Add(this.lblTime);
@@ -130,5 +145,6 @@
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label error;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button button3;
     }
 }

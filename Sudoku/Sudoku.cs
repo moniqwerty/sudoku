@@ -28,7 +28,7 @@ namespace Sudoku
          * We generate the solution from one unique solution by randomly using some game
          * combination. There are thousands of combinations possible.
        */
-
+        [Serializable]
         public class Sudoku
         {
 
