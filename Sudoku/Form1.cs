@@ -50,8 +50,10 @@ namespace Sudoku
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Game game = new Game(1);
+            Game game = new Game(new Settings(this));
+            game.openToolStripMenuItem_Click(sender, e);
             game.Show();
+            this.Hide();
         }
 
        

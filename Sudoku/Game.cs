@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using Microsoft.VisualBasic;
 
 namespace Sudoku
 {
@@ -55,10 +56,7 @@ namespace Sudoku
             this.Width = WIDTH;
             this.Height = HEIGHT;
 
-
             textBox1 = new TextBox();
-
-            //this.textBox1.TabIndex = 1;
 
             textBox1.TextChanged += new EventHandler(textBox1_TextChanged);
             textBox1.Font = new Font("Papyrus", 16F, (FontStyle.Bold), GraphicsUnit.Point, ((byte)(0)));
@@ -136,104 +134,16 @@ namespace Sudoku
                 }
 
             }
+            int points = (game.gameDiff + 1) * (1000 - time) * game.numberOfHints;
+            string name = inputName();
+            Score score = new Score(name, points);
+            HighScore highScore = new HighScore();
+            highScore.ReadScores("HighScore.txt");
+            highScore.sortHighScore(score);
+            highScore.Show();
+            highScore.WriteScores("HighScore.txt");
         }
-        public Game(int bla)
-        {
-
-            //this.form1 = f;
-
-            InitializeComponent();
-            timer1.Interval = 1000;
-            time = 0;
-            timer1.Start();
-            // game = new Sudoku();
-            game = new Grid(0);
-            this.Width = WIDTH;
-            this.Height = HEIGHT;
-
-
-            textBox1 = new TextBox();
-
-            //this.textBox1.TabIndex = 1;
-
-            textBox1.TextChanged += new EventHandler(textBox1_TextChanged);
-            textBox1.Font = new Font("Papyrus", 16F, (FontStyle.Bold), GraphicsUnit.Point, ((byte)(0)));
-            textBox1.TextAlign = HorizontalAlignment.Center;
-            textBox1.Visible = false;
-            textBox1.BorderStyle = BorderStyle.None;
-            this.Controls.Add(textBox1);
-
-            //firstGenerated = new List<int>();
-            labels = new List<Label>();
-            //errorList = new List<int>();
-            int k = 1;
-
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-
-                    Label label = new Label();
-                    label.Location = new Point(startPositionX + j * (int)SmallCubeSize + 3, startPositionY + i * (int)SmallCubeSize + 3);
-                    if (k < 10)
-                    {
-                        label.Name = string.Format("label0{0}", k);
-                    }
-                    else
-                    {
-                        label.Name = string.Format("label{0}", k);
-                    }
-                    label.BackColor = Color.Tan;
-                    label.Font = new Font("Papyrus", 16F, (FontStyle.Bold), GraphicsUnit.Point, ((byte)(0)));
-                    label.Size = new Size((int)SmallCubeSize - 5, (int)SmallCubeSize - 5);
-                    label.TextAlign = ContentAlignment.MiddleCenter;
-                    labels.Add(label);
-                    k++;
-                }
-            }
-
-            for (int i = 0; i < 81; i++)
-            {
-                labels[i].Click += new EventHandler(Game_Click);
-                this.Controls.Add(labels[i]);
-            }
-
-            pen = new Pen(Color.Brown, 3);
-
-            //if (form1.gameDiff == 0)
-            //{
-            //    game.GenerateGame(GameLevel.SIMPLE);
-            //}
-            //if (form1.gameDiff == 1)
-            //{
-            //    game.GenerateGame(GameLevel.MEDIUM);
-            //}
-            //if (form1.gameDiff == 2)
-            //{
-            //    game.GenerateGame(GameLevel.COMPLEX);
-            //}
-
-            int[,] set = game.game._numberSet;
-            int[,] mset = game.game._problemSet;
-            k = 0;
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-
-                    if (mset[i, j] != 0)
-                    {
-                        game.values[k] = mset[i, j];
-                        //labels[k].Text = Convert.ToString(mset[i, j]);
-                        labels[k].Text = Convert.ToString(game.values[k]);
-                        game.firstGenerated.Add(k);
-                    }
-                    k++;
-                }
-
-            }
-            OpenFile();
-        }                
+               
         void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -269,7 +179,14 @@ namespace Sudoku
                                 }
                                 if (GameFinished())
                                 {
-                                    DialogResult result = MessageBox.Show("\tYOU HAVE WON THE GAME!!!", "  Congratulations!!!!",MessageBoxButtons.OK);                                    
+                                    int points = (game.gameDiff + 1) * (1000 - time) * game.numberOfHints;
+                                    string name = inputName();
+                                    Score score = new Score(name, points);
+                                    HighScore highScore = new HighScore();
+                                    highScore.ReadScores("HighScore.txt");
+                                    highScore.sortHighScore(score);
+                                    highScore.Show();
+                                    highScore.WriteScores("HighScore.txt");
                                     this.Close();
                                 }
                                 labels[i - 1].Visible = true;
@@ -361,15 +278,7 @@ namespace Sudoku
                 paint.DrawLine(penThin, startPositionX, startPositionY + i * SmallCubeSize, startPositionX + gridWidth, startPositionY + i * SmallCubeSize);
             }
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void Game_Load(object sender, EventArgs e)
-        {
-
-        }
         bool isValid(int wat, string el) //
         {
             int i = ((wat - 1) / 9);
@@ -542,22 +451,36 @@ namespace Sudoku
 
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 form1.Show();   // Error
-            }
-            catch (Exception r)
-            {
-                Form1 f = new Form1();
-                f.Show();
+            //}
+            //catch (Exception r)
+            //{
+            //    Form1 f = new Form1();
+            //    f.Show();
 
-            }
+            //}
             
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private string inputName()
+        {
+            string sName;
+            //asks user to input their name before the game begins
+            sName = Microsoft.VisualBasic.Interaction.InputBox("Please enter your name:", "What is Your Name?", "");
+            //if no name is entered, they are asked again
+
+            while (sName == "")
+            {
+                MessageBox.Show("Please enter your name.");
+                sName = Microsoft.VisualBasic.Interaction.InputBox("Please enter your name:", "What is Your Name?", "");
+            }
+            return sName;
         }
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -655,54 +578,8 @@ namespace Sudoku
                     button1.Text = "NO HINTS";
                     button1.Enabled = false;
                 }
-                time = game.time;
-                game = g;
-                CheckAll();
-                Invalidate(true);
-            }
-        }
-        public void OpenFile(){
-            Grid g = new Grid(0);
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "SudokuGame file (*.odr)|*.odr";
-            openFileDialog1.Title = "Open a Sudoku Game File";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    FileName = openFileDialog1.FileName;
-                    System.Runtime.Serialization.IFormatter fmt = new
-                    System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                    System.IO.FileStream strm = new FileStream(FileName, FileMode.Open, FileAccess.Read, FileShare.None);
-                    g = (Grid)fmt.Deserialize(strm);
-                    strm.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file \"" + FileName + "\" from disk. Original error: " + ex.Message);
-                    FileName = null;
-                }
-
-                for (int i = 0; i < 81; i++)
-                {
-                    if (g.values[i] != 0)
-                    {
-                        if (g.errorList.Contains(i))
-                            labels[i - 1].ForeColor = Color.Red;
-                        labels[i].Text = Convert.ToString(g.values[i]);
-                    }
-                    else
-                        labels[i].Text = "";
-                }
-
-                if (g.numberOfHints != 0)
-                    button1.Text = string.Format("HINT   {0}", g.numberOfHints);
-                else
-                {
-                    button1.Text = "NO HINTS";
-                    button1.Enabled = false;
-                }
-                time = game.time;
+                time = g.time;
+                lblTime.Text = string.Format("{0:00}:{1:00}", time / 60, time % 60);
                 game = g;
                 CheckAll();
                 Invalidate(true);
