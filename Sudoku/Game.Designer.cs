@@ -119,6 +119,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Game";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Game_FormClosed);
+            this.Load += new System.EventHandler(this.Game_Load);
             this.Click += new System.EventHandler(this.Game_Click_1);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Game_Paint);
             this.ResumeLayout(false);

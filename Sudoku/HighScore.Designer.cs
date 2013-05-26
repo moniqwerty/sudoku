@@ -59,11 +59,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Sudoku.Properties.Resources.back;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(291, 262);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
             this.Name = "HighScore";
             this.Text = "HighScore";
+            this.Load += new System.EventHandler(this.HighScore_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

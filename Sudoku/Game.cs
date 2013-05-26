@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using Microsoft.VisualBasic;
+using System.Media;
+using System.Reflection;
 
 namespace Sudoku
 {
@@ -138,18 +140,24 @@ namespace Sudoku
             string name = inputName();
             Score score = new Score(name, points);
             HighScore highScore = new HighScore();
-            highScore.ReadScores("HighScore.txt");
+            FileStream fileStream = new FileStream("HighScore.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+            highScore.ReadScores(fileStream);
             highScore.sortHighScore(score);
             highScore.Show();
+            fileStream.Close();
             highScore.WriteScores("HighScore.txt");
+            fileStream.Close();
         }
                
-        void textBox1_TextChanged(object sender, EventArgs e)
+        void textBox1_TextChanged(object sender, EventArgs ee)
         {
 
             int i = Convert.ToInt32(textBox1.Name.Substring(textBox1.Name.Length - 2));
             if (textBox1.TextLength != 0)
             {
+                //play sound
+                SoundPlayer player = new SoundPlayer(Properties.Resources.zvukNaj);
+                player.Play();
                 int n;
                 bool isNumeric = int.TryParse(textBox1.Text, out n);
                 if (isNumeric)
@@ -177,17 +185,20 @@ namespace Sudoku
                                     }
                                     labels[i - 1].ForeColor = System.Drawing.Color.Black;
                                 }
+
                                 if (GameFinished())
                                 {
                                     int points = (game.gameDiff + 1) * (1000 - time) * game.numberOfHints;
                                     string name = inputName();
                                     Score score = new Score(name, points);
                                     HighScore highScore = new HighScore();
-                                    highScore.ReadScores("HighScore.txt");
+                                    FileStream fileStream = new FileStream("HighScore.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+                                    highScore.ReadScores(fileStream);
                                     highScore.sortHighScore(score);
                                     highScore.Show();
+                                    fileStream.Close();
                                     highScore.WriteScores("HighScore.txt");
-                                    this.Close();
+                                    fileStream.Close();
                                 }
                                 labels[i - 1].Visible = true;
                                 textBox1.Visible = false;
@@ -202,7 +213,7 @@ namespace Sudoku
                                         }
                                     }
                                 }
-                                catch (Exception r)
+                                catch (Exception e)
                                 {
                                     CheckAll();
                                 }
@@ -235,7 +246,7 @@ namespace Sudoku
                         
                     }
                 }
-                catch (Exception r)
+                catch (Exception e)
                 {
                     CheckAll();
                 }
@@ -584,6 +595,11 @@ namespace Sudoku
                 CheckAll();
                 Invalidate(true);
             }
+        }
+
+        private void Game_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

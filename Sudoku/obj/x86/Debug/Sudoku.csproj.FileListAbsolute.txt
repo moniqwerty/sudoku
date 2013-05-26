@@ -57,3 +57,4 @@ C:\Users\User\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\GenerateResource.read
 C:\Users\User\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\User\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.HighScore.resources
 C:\Users\User\Documents\GitHub\sudoku\Sudoku\bin\Debug\HighScore.txt
+C:\Users\Moni\Documents\GitHub\sudoku\Sudoku\obj\x86\Debug\Sudoku.HighScore.resources
