@@ -13,20 +13,32 @@ namespace Sudoku
     public partial class HighScore : Form
     {
         List<Score> score;
-        //FileStream fileStream;
-        public HighScore()
+        Form1 form;
+
+        public HighScore(Form1 f)
         {
             InitializeComponent();
             score = new List<Score>(11);
+            form = f;
         }
         public void sortHighScore(Score s)
         {
-            score.Add(s);
+            if (score.Count < 10)
+                score.Add(s);
+            else
+            {
+                if (score[score.Count() - 1].Points < s.Points)
+                {
+                    score.Remove(score[score.Count() - 1]);
+                    score.Add(s);
+                }
+            }
             if (score.Count() != 0)                
                 score.Sort((x, y) => y.Points.CompareTo(x.Points));
+            listBox1.Items.Clear();
             for (int i = 0; i < score.Count(); i++)
             {
-                listBox1.Items.Add(string.Format("{0}. {1}", (i + 1), score[i]));                
+                listBox1.Items.Add(string.Format("{0}. {1}\t\t\t{2}", (i + 1), score[i].Name, score[i].Points));    
             }
         }
         public List<Score> ReadScores(FileStream fileStream)
@@ -50,13 +62,11 @@ namespace Sudoku
                     score.Sort((x, y) => y.Points.CompareTo(x.Points));
                 for (int i = 0; i < score.Count(); i++)
                 {
-                    listBox1.Items.Add(string.Format("{0}. {1}", (i + 1), score[i]));
+                    listBox1.Items.Add(string.Format("{0}. {1}\t\t\t{2}", (i + 1), score[i].Name,score[i].Points));
                 }
-                //fileStream.Close();
             }
             catch (Exception e)
             {
-                //Error.Text += "neprocitav";
                 Console.WriteLine("Exception: " + e.Message);
                 
             }
@@ -74,21 +84,10 @@ namespace Sudoku
                 for (int i = 0; i < score.Count(); i++)
                 {
                     wr.WriteLine(score[i].ToString());
-                    //wr.WriteLine(string.Format("{0}", score[i]));
                 }
                 wr.Close();
                 fileStream.Close();
-                /*
-                fileStream = new FileStream(@fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-                TextReader sr = new StreamReader(fileStream);
-                string line = sr.ReadLine();
-                while (line != null)
-                {
-                    //Error.Text += "\n" + line;
-                    line = sr.ReadLine();
-                }
-                sr.Close();
-                fileStream.Close();*/
+
             }
             catch (Exception e)
             {
@@ -102,6 +101,16 @@ namespace Sudoku
         private void HighScore_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void HighScore_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            form.Show();
         }
     }
 }

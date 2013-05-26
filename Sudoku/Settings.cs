@@ -20,25 +20,7 @@ namespace Sudoku
             gameDiff = 1;
 
             parent = p;
-            //if (parent.gameDiff == 0)
-            //{
-            //    rbtEasy.Checked = true;
-            //    rbtMedium.Checked = false;
-            //    rbtHard.Checked = false;
-
-            //}
-            //if (parent.gameDiff == 1)
-            //{
-            //    rbtEasy.Checked = false;
-            //    rbtMedium.Checked = true;
-            //    rbtHard.Checked = false;
-            //}
-            //if (parent.gameDiff == 2)
-            //{
-            //    rbtEasy.Checked = false;
-            //    rbtMedium.Checked = false;
-            //    rbtHard.Checked = true;
-            //}           
+            
             groupBox1.BackColor = System.Drawing.Color.Transparent;
                 
         }

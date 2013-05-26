@@ -58,13 +58,14 @@ namespace Sudoku
 
         private void highBtn_Click(object sender, EventArgs e)
         {
-            HighScore highScore = new HighScore();
+            HighScore highScore = new HighScore(this);
             FileStream fileStream = new FileStream("HighScore.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
             highScore.ReadScores(fileStream);
             highScore.Show();
             fileStream.Close();
             highScore.WriteScores("HighScore.txt");
             fileStream.Close();
+            this.Hide();
         }
 
        

@@ -18,7 +18,6 @@ namespace Sudoku
 
         string FileName = null;
 
-        //public Sudoku game;
         Grid game;
         private Settings form1;
 
@@ -36,24 +35,24 @@ namespace Sudoku
         public Pen pen;
 
         public List<Label> labels;
-        //public List<int> errorList;
-        //public List<int> firstGenerated;
+
         public TextBox textBox1;
-        //public int lastHint;
-        //public int hintTime = -1;
-        //public int numberOfHints = 3;
+
         public int time { get; set; }
+
+        SoundPlayer player;
 
         public Game(Settings f)
         {
 
             this.form1 = f;
+            player = new SoundPlayer(Properties.Resources.zvukNaj);
 
             InitializeComponent();
             timer1.Interval = 1000;
             time = 0;
             timer1.Start();
-           // game = new Sudoku();
+
             game = new Grid(f.gameDiff);
             this.Width = WIDTH;
             this.Height = HEIGHT;
@@ -67,9 +66,8 @@ namespace Sudoku
             textBox1.BorderStyle = BorderStyle.None;
             this.Controls.Add(textBox1);
 
-            //firstGenerated = new List<int>();
             labels = new List<Label>();
-            //errorList = new List<int>();
+
             int k = 1;
 
             for (int i = 0; i < 9; i++)
@@ -103,20 +101,7 @@ namespace Sudoku
             }
 
             pen = new Pen(Color.Brown, 3);
-
-            //if (form1.gameDiff == 0)
-            //{
-            //    game.GenerateGame(GameLevel.SIMPLE);
-            //}
-            //if (form1.gameDiff == 1)
-            //{
-            //    game.GenerateGame(GameLevel.MEDIUM);
-            //}
-            //if (form1.gameDiff == 2)
-            //{
-            //    game.GenerateGame(GameLevel.COMPLEX);
-            //}
-
+           
             int[,] set = game.game._numberSet;
             int[,] mset = game.game._problemSet;
             k = 0;
@@ -128,7 +113,6 @@ namespace Sudoku
                     if (mset[i, j] != 0)
                     {
                         game.values[k] = mset[i, j];
-                        //labels[k].Text = Convert.ToString(mset[i, j]);
                         labels[k].Text = Convert.ToString(game.values[k]);
                         game.firstGenerated.Add(k);
                     }
@@ -136,17 +120,7 @@ namespace Sudoku
                 }
 
             }
-            int points = (game.gameDiff + 1) * (1000 - time) * game.numberOfHints;
-            string name = inputName();
-            Score score = new Score(name, points);
-            HighScore highScore = new HighScore();
-            FileStream fileStream = new FileStream("HighScore.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-            highScore.ReadScores(fileStream);
-            highScore.sortHighScore(score);
-            highScore.Show();
-            fileStream.Close();
-            highScore.WriteScores("HighScore.txt");
-            fileStream.Close();
+            
         }
                
         void textBox1_TextChanged(object sender, EventArgs ee)
@@ -156,6 +130,7 @@ namespace Sudoku
             if (textBox1.TextLength != 0)
             {
                 //play sound
+                                
                 SoundPlayer player = new SoundPlayer(Properties.Resources.zvukNaj);
                 player.Play();
                 int n;
@@ -189,9 +164,9 @@ namespace Sudoku
                                 if (GameFinished())
                                 {
                                     int points = (game.gameDiff + 1) * (1000 - time) * game.numberOfHints;
-                                    string name = inputName();
+                                    string name = inputName(points);
                                     Score score = new Score(name, points);
-                                    HighScore highScore = new HighScore();
+                                    HighScore highScore = new HighScore(form1.parent);
                                     FileStream fileStream = new FileStream("HighScore.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
                                     highScore.ReadScores(fileStream);
                                     highScore.sortHighScore(score);
@@ -199,6 +174,7 @@ namespace Sudoku
                                     fileStream.Close();
                                     highScore.WriteScores("HighScore.txt");
                                     fileStream.Close();
+                                    this.Close();
                                 }
                                 labels[i - 1].Visible = true;
                                 textBox1.Visible = false;
@@ -294,14 +270,12 @@ namespace Sudoku
         {
             int i = ((wat - 1) / 9);
             int j = ((wat - 1) % 9);
-            //error.Text += /*"wat: " + wat + */"i: " + i + " j: " + j + "\n";
             //dali e validno vo redica
             for (int k = 0; k < 9; k++)
             {
                 if (k == j) continue;
                 if(labels[i*9+k].Text==el)
                 {
-                   // error.Text += "\n" + i + " " + k + "so" + i + " " + j; //debugMode on
                     return false;
                 }
             }
@@ -312,7 +286,6 @@ namespace Sudoku
                 if (labels[k * 9 + j].Text==el)
 
                 {
-                    //error.Text += "\n" + k + " " + j + "so" + i + " " + j; //debugMode on
                     return false;
                 }
             }
@@ -352,17 +325,14 @@ namespace Sudoku
             {
                 for (int m = xj; m <= yj; m++)
                 {
-                    //error.Text += labels[k * 9 + m].Text + " ";
                     if (k == i) continue;
                     if (m == j) continue;
                     if (labels[k * 9 + m].Text==el)
 
                     {
-                        //error.Text += "\n" + k + " " + m + "so" + i + " " + j; //debugMode on
-                        return false;
+                       return false;
                     }
                 }
-                //error.Text +="\n";
             }
             return true;
         }
@@ -381,8 +351,8 @@ namespace Sudoku
                 int i = Convert.ToInt32(l.Name.Substring(l.Name.Length - 2));                
                 if (!game.firstGenerated.Contains(i - 1))
                 {
-                    textBox1.Location = labels[i - 1].Location;
-                    textBox1.Size = new Size(labels[i - 1].Size.Width, labels[i - 1].Size.Height);
+                    textBox1.Location = new Point(labels[i - 1].Location.X-2,labels[i-1].Location.Y+6);
+                    textBox1.Size = new Size(labels[i - 1].Size.Width, labels[i - 1].Size.Height+3);
                     textBox1.Name = labels[i - 1].Name;
                     textBox1.BackColor = Color.Tan;
                     textBox1.Visible = true;
@@ -441,7 +411,6 @@ namespace Sudoku
                     if (labels[q].Text == "")
                     {
                         if (isValid(q + 1, game.game._numberSet[q / 9, q % 9] + ""))
-                       // if (isValid(q / 9, q % 9, game._numberSet[q / 9, q % 9] + ""))
                         {
                             labels[q].Text = game.game._numberSet[q / 9, q % 9] + "";
                             game.values[q] = Convert.ToInt32(labels[q].Text);
@@ -462,29 +431,19 @@ namespace Sudoku
 
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //try
-            //{
-                form1.Show();   // Error
-            //}
-            //catch (Exception r)
-            //{
-            //    Form1 f = new Form1();
-            //    f.Show();
-
-            //}
-            
+            if(!GameFinished())
+                form1.Show();            
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        private string inputName()
+        private string inputName(int points)
         {
             string sName;
-            //asks user to input their name before the game begins
-            sName = Microsoft.VisualBasic.Interaction.InputBox("Please enter your name:", "What is Your Name?", "");
-            //if no name is entered, they are asked again
+
+            sName = Microsoft.VisualBasic.Interaction.InputBox(string.Format("YOU HAVE WON {0}!!!\nPlease enter your name:",points), "What is Your Name?", "");
 
             while (sName == "")
             {
