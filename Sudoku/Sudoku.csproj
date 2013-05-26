@@ -121,10 +121,8 @@
     <None Include="Resources\menu.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HighScore.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\back.jpg" />
+    <Content Include="Resources\zvukNaj.wav" />
     <None Include="Resources\back1.jpg" />
     <Content Include="Resources\Grunge background with dragon 04.jpg" />
     <Content Include="Resources\icon.ico" />
