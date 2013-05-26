@@ -15,7 +15,12 @@ namespace Sudoku
         public About(Form p)
         {
             InitializeComponent();
-            parent = p;            
+            parent = p;
+            /*den.ForeColor = Color.Black;
+            dva.ForeColor = Color.Black;
+            tri.ForeColor = Color.Black;
+            cetiri.ForeColor = Color.Black;*/
+            
         }
 
         private void About_Leave(object sender, EventArgs e)

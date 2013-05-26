@@ -163,7 +163,7 @@ namespace Sudoku
 
                                 if (GameFinished())
                                 {
-                                    int points = (game.gameDiff + 1) * (1000 - time) * game.numberOfHints;
+                                    int points = (game.gameDiff + 1) * ((1000 - time)+1) * (game.numberOfHints+1);
                                     string name = inputName(points);
                                     Score score = new Score(name, points);
                                     HighScore highScore = new HighScore(form1.parent);
@@ -443,7 +443,7 @@ namespace Sudoku
         {
             string sName;
 
-            sName = Microsoft.VisualBasic.Interaction.InputBox(string.Format("YOU HAVE WON {0}!!!\nPlease enter your name:",points), "What is Your Name?", "");
+            sName = Microsoft.VisualBasic.Interaction.InputBox(string.Format("YOU HAVE WON THE GAME WITH {0} POINTS!!!\nPlease enter your name:",points), "What is Your Name?", "");
 
             while (sName == "")
             {
@@ -485,9 +485,11 @@ namespace Sudoku
                 bool isNumeric = int.TryParse(l.Text, out n);
                 if (isNumeric)
                 {
+                    
                     if (isValid(mom, l.Text))
                     {
                         l.ForeColor = Color.Black;
+                        
                         if (game.errorList.Contains(mom))
                         {
                             game.errorList.Remove(mom);
@@ -495,6 +497,7 @@ namespace Sudoku
                     }
                     else
                     {
+                        if (!game.firstGenerated.Contains(mom -1))
                         l.ForeColor = Color.Red;
                         if (!game.errorList.Contains(mom))
                         {
